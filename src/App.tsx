@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 import { ReactPhotoSphereViewer } from 'react-photo-sphere-viewer'
-import { LensflarePlugin } from 'photo-sphere-viewer-lensflare-plugin';
-// import { CompassPlugin } from '@photo-sphere-viewer/compass-plugin';
 import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
 import "@photo-sphere-viewer/markers-plugin/index.css";
-import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin';
 
 interface Props {
 
@@ -24,7 +21,7 @@ const App: React.FC<Props> = () => {
     const markersPlugs = instance.getPlugin(MarkersPlugin);
     if (!markersPlugs) return;
     markersPlugs.addEventListener("select-marker", (e: any) => {
-
+      //@ts-ignore
       photoSphereRef.current?.zoomIn(90)
       setTimeout(() => {
         const selectedView = e.marker.config.id
@@ -90,6 +87,7 @@ const App: React.FC<Props> = () => {
     <div>{
       plugins.length && plugins.length > 0 && 
       <ReactPhotoSphereViewer
+      //@ts-ignore
           ref={photoSphereRef}
           src={image}
           littlePlanet={true}
